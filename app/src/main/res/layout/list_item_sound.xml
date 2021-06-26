@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.beatbox.SoundViewModel"
+        />
+    </data>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:padding="7dp"
+        android:layout_margin="7dp"
+        android:text="@{viewModel.title}"
+        tools:text="@string/sound_item_btn_text"
+    ></Button>
+</layout>
