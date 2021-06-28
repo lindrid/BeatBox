@@ -9,7 +9,7 @@ import java.util.Collections.emptyList
 
 private const val TAG = "BeatBox"
 private const val SOUNDS_FOLDER = "sample_sounds"
-private const val MAX_SOUNDS = 5
+private const val MAX_SOUNDS = 10
 
 class BeatBox (private val assets: AssetManager) {
   private val soundPool = SoundPool.Builder()
@@ -56,7 +56,9 @@ class BeatBox (private val assets: AssetManager) {
   }
 
   fun play(sound: Sound) {
-
+    sound.id?.let {
+      soundPool.play(it, 1.0f, 1.0f, 1, 0, 1.0f)
+    }
   }
 
 }
