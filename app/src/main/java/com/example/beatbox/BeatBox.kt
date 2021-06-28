@@ -55,10 +55,13 @@ class BeatBox (private val assets: AssetManager) {
     sound.id = soundId
   }
 
-  fun play(sound: Sound) {
+  fun play (sound: Sound) {
     sound.id?.let {
       soundPool.play(it, 1.0f, 1.0f, 1, 0, 1.0f)
     }
   }
 
+  fun release() {
+    soundPool.release()
+  }
 }
