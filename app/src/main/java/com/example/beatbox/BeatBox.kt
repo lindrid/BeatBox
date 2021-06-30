@@ -17,6 +17,7 @@ class BeatBox (private val assets: AssetManager) {
     .build()
 
   val sounds: List<Sound>
+  var soundRate: Float = 1.0f
 
   init {
     sounds = loadSounds()
@@ -57,7 +58,7 @@ class BeatBox (private val assets: AssetManager) {
 
   fun play (sound: Sound) {
     sound.id?.let {
-      soundPool.play(it, 1.0f, 1.0f, 1, 0, 1.0f)
+      soundPool.play(it, 1.0f, 1.0f, 1, 0, soundRate)
     }
   }
 

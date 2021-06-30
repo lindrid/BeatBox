@@ -2,6 +2,7 @@ package com.example.beatbox
 
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,9 +21,39 @@ class MainActivity : AppCompatActivity() {
 
     beatBox = BeatBox (assets)
 
-    binding.recyclerView.apply {
+    val apply = binding.recyclerView.apply {
       layoutManager = GridLayoutManager(context, 3)
       adapter = SoundAdapter(beatBox.sounds)
+    }
+
+    setBeatBoxSoundRate (binding.seekBar.progress)
+    binding.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
+
+    binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+      override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+        setBeatBoxSoundRate(i)
+        binding.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
+      }
+
+      override fun onStartTrackingTouch(seekBar: SeekBar) {
+        // Do something
+      }
+
+      override fun onStopTrackingTouch(seekBar: SeekBar) {
+        // Do something
+      }
+    })
+  }
+
+  private fun getSpeedPercent(): Int {
+    return (beatBox.soundRate * 100).toInt()
+  }
+
+  private fun setBeatBoxSoundRate(progress: Int)  {
+    beatBox.soundRate = when (progress) {
+      0 -> 0.5f
+      2 -> 2.0f
+      else -> 1.0f
     }
   }
 
