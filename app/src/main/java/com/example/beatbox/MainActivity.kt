@@ -16,23 +16,23 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate (savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val binding: ActivityMainBinding = DataBindingUtil.setContentView (this,
+    val ui: ActivityMainBinding = DataBindingUtil.setContentView (this,
       R.layout.activity_main)
 
     beatBox = BeatBox (assets)
 
-    val apply = binding.recyclerView.apply {
+    val apply = ui.recyclerView.apply {
       layoutManager = GridLayoutManager(context, 3)
       adapter = SoundAdapter(beatBox.sounds)
     }
 
-    setBeatBoxSoundRate (binding.seekBar.progress)
-    binding.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
+    setBeatBoxSoundRate (ui.seekBar.progress)
+    ui.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
 
-    binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+    ui.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
         setBeatBoxSoundRate(i)
-        binding.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
+        ui.textView.text = getString(R.string.seek_bar_text, getSpeedPercent()) + "%"
       }
 
       override fun onStartTrackingTouch(seekBar: SeekBar) {
