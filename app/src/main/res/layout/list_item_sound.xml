@@ -8,14 +8,19 @@
             type="com.example.beatbox.SoundViewModel"
         />
     </data>
-    <Button
-        style="@style/BeatBoxButton"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:padding="7dp"
-        android:layout_margin="7dp"
-        android:text="@{viewModel.title}"
-        android:onClick="@{() -> viewModel.onButtonClick()}"
-        tools:text="@string/sound_item_btn_text"
-    />
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+    >
+        <Button
+            style="@style/BeatBoxButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:text="@{viewModel.title}"
+            android:onClick="@{() -> viewModel.onButtonClick()}"
+            tools:text="@string/sound_item_btn_text"
+        />
+    </FrameLayout>
 </layout>
